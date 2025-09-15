@@ -16,33 +16,27 @@
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-      color: #f0f3f7;
+      background: #f5f7fa;
+      color: #1c2430;
       padding-top: 2rem;
       transition: all 0.5s ease;
     }
-    body.light {
-      background: #f5f7fa;
-      color: #1c2430;
-    }
+
     .card {
-      background: rgba(255,255,255,0.08);
+      background: #fff;
       border: none;
       border-radius: 20px;
-      box-shadow: 0 12px 25px rgba(0,0,0,0.4);
-      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-    }
-    body.light .card {
-      background: #fff;
-      color: #1c2430;
       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+      color: #1c2430;
     }
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
     }
+
     .btn-primary {
-      background: linear-gradient(90deg,#6ee7b7,#3b82f6);
+      background: linear-gradient(90deg,#34d399,#3b82f6);
       border: none;
       color: #fff;
       font-weight: 600;
@@ -50,20 +44,24 @@
     }
     .btn-primary:hover {
       transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
+
     .btn-outline-dark {
+      border: 1px solid #1c2430;
+      color: #1c2430;
       border-radius: 12px;
       transition: transform 0.3s, box-shadow 0.3s;
     }
     .btn-outline-dark:hover {
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
+
     .balance-number {
       font-size: 2rem;
       font-weight: 700;
-      background: linear-gradient(90deg,#6ee7b7,#3b82f6);
+      background: linear-gradient(90deg,#34d399,#3b82f6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: fadeInBalance 1s ease-in-out;
@@ -72,13 +70,14 @@
       0% { opacity: 0; transform: translateY(20px);}
       100% { opacity: 1; transform: translateY(0);}
     }
-    .mode-toggle { cursor:pointer; font-size: 0.9rem; transition: color 0.3s; }
-    .mode-toggle:hover { color: #6ee7b7; }
 
     /* History Table */
     .history-table {
       font-size: 0.9rem;
-      color: #e0e0e0;
+      color: #1c2430;
+    }
+    .history-table thead {
+      color: #555;
     }
     .history-table tbody tr {
       transition: transform 0.3s, background 0.3s;
@@ -86,29 +85,34 @@
     }
     .history-table tbody tr:hover {
       transform: translateX(5px);
-      background: rgba(255,255,255,0.1);
+      background: rgba(0,0,0,0.05);
     }
 
     /* Smooth fade-in */
     .fade-in { animation: fadeIn 0.5s ease-in; }
     @keyframes fadeIn { from {opacity:0; transform:translateY(8px);} to {opacity:1; transform:translateY(0);} }
 
+    /* Inputs */
     input.form-control {
       border-radius: 12px;
-      transition: box-shadow 0.3s;
+      background-color: #fff;
+      color: #1c2430;
+      border: 1px solid #ccc;
+      transition: box-shadow 0.3s, border-color 0.3s;
     }
     input.form-control:focus {
-      box-shadow: 0 0 12px rgba(52, 211, 153, 0.5);
+      box-shadow: 0 0 12px rgba(52, 211, 153, 0.3);
       border-color: #34d399;
+      background-color: #fff;
+      color: #1c2430;
     }
   </style>
 </head>
 <body>
   <main class="container" style="max-width:960px">
     <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="mb-4">
       <h1><i class="bi bi-bank2"></i> Banking Dashboard — Runank</h1>
-      <div class="mode-toggle text-muted"><i class="bi bi-moon-stars-fill"></i> Toggle Mode</div>
     </div>
 
     <!-- Controls & Balance -->
@@ -233,8 +237,6 @@ def cash_deposit(d_amt):
       updateBalance();
       addHistory("Reset",0);
     });
-
-    document.querySelector('.mode-toggle').addEventListener('click',()=>{ document.body.classList.toggle('light'); });
   </script>
 </body>
 </html>
